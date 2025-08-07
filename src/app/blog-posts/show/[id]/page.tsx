@@ -1,11 +1,13 @@
+"use client";
+
+import { POST_SHOW_QUERY } from "@queries/blog-posts";
 import { DateField, MarkdownField, Show, TextField } from "@refinedev/antd";
 import { useShow } from "@refinedev/core";
 import { Typography } from "antd";
-import { POST_SHOW_QUERY } from "./queries";
 
 const { Title } = Typography;
 
-export const BlogPostShow = () => {
+export default function BlogPostShow() {
   const { queryResult } = useShow({
     meta: {
       gqlQuery: POST_SHOW_QUERY,
@@ -31,4 +33,4 @@ export const BlogPostShow = () => {
       <DateField value={record?.createdAt} />
     </Show>
   );
-};
+}

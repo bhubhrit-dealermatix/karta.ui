@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DateField,
   DeleteButton,
@@ -9,9 +11,10 @@ import {
 } from "@refinedev/antd";
 import { type BaseRecord } from "@refinedev/core";
 import { Space, Table } from "antd";
-import { POSTS_LIST_QUERY } from "./queries";
 
-export const BlogPostList = () => {
+import { POSTS_LIST_QUERY } from "@queries/blog-posts";
+
+export default function BlogPostList() {
   const { tableProps } = useTable({
     syncWithLocation: true,
     meta: {
@@ -53,4 +56,4 @@ export const BlogPostList = () => {
       </Table>
     </List>
   );
-};
+}

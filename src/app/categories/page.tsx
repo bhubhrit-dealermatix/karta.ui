@@ -1,3 +1,6 @@
+"use client";
+
+import { CATEGORIES_LIST_QUERY } from "@queries/categories";
 import {
   DeleteButton,
   EditButton,
@@ -7,9 +10,8 @@ import {
 } from "@refinedev/antd";
 import type { BaseRecord } from "@refinedev/core";
 import { Space, Table } from "antd";
-import { CATEGORIES_LIST_QUERY } from "./queries";
 
-export const CategoryList = () => {
+export default function CategoryList() {
   const { tableProps } = useTable({
     syncWithLocation: true,
     meta: {
@@ -36,4 +38,4 @@ export const CategoryList = () => {
       </Table>
     </List>
   );
-};
+}

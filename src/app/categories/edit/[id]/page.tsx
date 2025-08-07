@@ -1,16 +1,18 @@
-import { Create, useForm } from "@refinedev/antd";
-import { Form, Input } from "antd";
-import { CATEGORY_CREATE_MUTATION } from "./queries";
+"use client";
 
-export const CategoryCreate = () => {
+import { CATEGORY_EDIT_MUTATION } from "@queries/categories";
+import { Edit, useForm } from "@refinedev/antd";
+import { Form, Input } from "antd";
+
+export default function CategoryEdit() {
   const { formProps, saveButtonProps } = useForm({
     meta: {
-      gqlMutation: CATEGORY_CREATE_MUTATION,
+      gqlMutation: CATEGORY_EDIT_MUTATION,
     },
   });
 
   return (
-    <Create saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
           label={"Title"}
@@ -24,6 +26,6 @@ export const CategoryCreate = () => {
           <Input />
         </Form.Item>
       </Form>
-    </Create>
+    </Edit>
   );
-};
+}

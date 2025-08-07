@@ -1,11 +1,13 @@
+"use client";
+
+import { CATEGORY_SHOW_QUERY } from "@queries/categories";
 import { Show, TextField } from "@refinedev/antd";
 import { useShow } from "@refinedev/core";
 import { Typography } from "antd";
-import { CATEGORY_SHOW_QUERY } from "./queries";
 
 const { Title } = Typography;
 
-export const CategoryShow = () => {
+export default function CategoryShow() {
   const { queryResult } = useShow({
     meta: {
       gqlQuery: CATEGORY_SHOW_QUERY,
@@ -23,4 +25,4 @@ export const CategoryShow = () => {
       <TextField value={record?.title} />
     </Show>
   );
-};
+}

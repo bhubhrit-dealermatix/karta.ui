@@ -1,30 +1,28 @@
-import { Edit, useForm, useSelect } from "@refinedev/antd";
-import MDEditor from "@uiw/react-md-editor";
-import { Form, Input, Select } from "antd";
-import { CATEGORIES_SELECT_QUERY, POST_EDIT_MUTATION } from "./queries";
+"use client";
 
-export const BlogPostEdit = () => {
-  const { formProps, saveButtonProps, queryResult, formLoading } = useForm({
+import {
+  CATEGORIES_SELECT_QUERY,
+  POST_CREATE_MUTATION,
+} from "@queries/blog-posts";
+import { Create, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select } from "antd";
+
+export default function BlogPostCreate() {
+  const { formProps, saveButtonProps } = useForm({
     meta: {
-      gqlMutation: POST_EDIT_MUTATION,
+      gqlMutation: POST_CREATE_MUTATION,
     },
   });
 
-  const blogPostsData = queryResult?.data?.data;
-
   const { selectProps: categorySelectProps } = useSelect({
     resource: "categories",
-    defaultValue: blogPostsData?.category,
-    queryOptions: {
-      enabled: !!blogPostsData?.category,
-    },
     meta: {
       gqlQuery: CATEGORIES_SELECT_QUERY,
     },
   });
 
   return (
-    <Edit saveButtonProps={saveButtonProps} isLoading={formLoading}>
+    <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
           label={"Title"}
@@ -46,12 +44,11 @@ export const BlogPostEdit = () => {
             },
           ]}
         >
-          <MDEditor data-color-mode="light" />
+          <Input.TextArea rows={5} />
         </Form.Item>
         <Form.Item
           label={"Category"}
           name={"categoryId"}
-          initialValue={formProps?.initialValues?.category?.id}
           rules={[
             {
               required: true,
@@ -81,6 +78,6 @@ export const BlogPostEdit = () => {
           />
         </Form.Item>
       </Form>
-    </Edit>
+    </Create>
   );
-};
+}
